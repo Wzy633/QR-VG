@@ -1,20 +1,20 @@
-# PR-VG: Text-Guided Structured Feature Pruning with Dynamic Visual Reconstruction for Reliable Remote Sensing Visual Grounding
+# QR-VG: Text-Guided Structured Feature Pruning with Dynamic Visual Reconstruction for Reliable Remote Sensing Visual Grounding
 
 **Long Sun**, Ziyang Wang, Xu Liu, Licheng Jiao, Shuo Li, Ruozhang Zhang, Fang Liu, Xiaowen Zhang
 
 <!-- Preprint, under review -->
 
-![PR-VG Model Architecture](./Overall.png)
+![QR-VG Model Architecture](./Overall.png)
 
 ## 📝 Abstract
 
 Remote Sensing Visual Grounding (RSVG) aims to localize objects in high-resolution RS imagery according to natural language queries, yet remains fundamentally constrained by the mismatch between sparse semantic intent and densely redundant visual observations. In large-scale aerial scenes, targets of interest typically occupy only a small fraction of the spatial domain, while existing methods uniformly process all visual tokens, leading to substantial computational redundancy, inefficient cross-modal reasoning, and unstable localization under complex background clutter. 
 
-In this paper, we propose a novel query-conditioned sparse grounding framework (PR-VG) that jointly addresses efficiency and reliability through structured feature optimization. Specifically, we introduce a **text-guided Structured Feature Pruning (SFP)** paradigm that injects query-conditional sparsity into the grounding pipeline by progressively filtering semantically irrelevant visual tokens using cross-modal importance modeling, thereby substantially reducing redundant computation while retaining global contextual awareness. To mitigate structural fragmentation caused by aggressive pruning, we further design a **Dynamic Visual Reconstruction (DVR)** mechanism that selectively recovers structurally coherent regions via neighborhood aggregation and text-visual similarity reasoning, ensuring continuity of target structures. Moreover, we present an **IoU-Aware Block (IAB)** that explicitly models localization quality within the Transformer decoder, providing reliability-aware supervision to refine grounding predictions and accelerate convergence under sparse feature representations. 
+In this paper, we propose a novel query-conditioned sparse grounding framework (QR-VG) that jointly addresses efficiency and reliability through structured feature optimization. Specifically, we introduce a **text-guided Structured Feature Pruning (SFP)** paradigm that injects query-conditional sparsity into the grounding pipeline by progressively filtering semantically irrelevant visual tokens using cross-modal importance modeling, thereby substantially reducing redundant computation while retaining global contextual awareness. To mitigate structural fragmentation caused by aggressive pruning, we further design a **Dynamic Visual Reconstruction (DVR)** mechanism that selectively recovers structurally coherent regions via neighborhood aggregation and text-visual similarity reasoning, ensuring continuity of target structures. Moreover, we present an **IoU-Aware Block (IAB)** that explicitly models localization quality within the Transformer decoder, providing reliability-aware supervision to refine grounding predictions and accelerate convergence under sparse feature representations. 
 
-Extensive experiments on challenging DIOR-RSVG and OPT-RSVG benchmarks demonstrate that the proposed framework establishes a new efficiency-accuracy trade-off for RSVG. Our best-performing model achieves state-of-the-art grounding performance while reducing FLOPs by approximately 30% and significantly lowering training time and memory consumption. These results indicate that PR-VG offers a scalable and reliable paradigm for high-resolution RSVG, advancing the development of efficient multimodal geospatial understanding systems.
+Extensive experiments on challenging DIOR-RSVG and OPT-RSVG benchmarks demonstrate that the proposed framework establishes a new efficiency-accuracy trade-off for RSVG. Our best-performing model achieves state-of-the-art grounding performance while reducing FLOPs by approximately 30% and significantly lowering training time and memory consumption. These results indicate that QR-VG offers a scalable and reliable paradigm for high-resolution RSVG, advancing the development of efficient multimodal geospatial understanding systems.
 
-**Code and dataset are available at:** [https://github.com/Pokemore/PR-VG](https://github.com/Pokemore/PR-VG)
+**Code and dataset are available at:** [https://github.com/Pokemore/QR-VG](https://github.com/Pokemore/QR-VG)
 
 ## ✨ Key Features
 
@@ -30,8 +30,8 @@ Extensive experiments on challenging DIOR-RSVG and OPT-RSVG benchmarks demonstra
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Pokemore/PR-VG.git
-cd PR-VG
+git clone https://github.com/Pokemore/QR-VG.git
+cd QR-VG
 ```
 
 2. Create a conda environment (Python 3.10):
@@ -120,48 +120,48 @@ cd ..
 
 ### DIOR-RSVG Training
 
-#### PR-VG
+#### QR-VG
 ```bash
-bash Shell/Result/DIOR-RSVG/PR-VG/PR-VG_train.sh
+bash Shell/Result/DIOR-RSVG/QR-VG/QR-VG_train.sh
 ```
 
-#### PR-VG-B
+#### QR-VG-B
 ```bash
-bash Shell/Result/DIOR-RSVG/PR-VG-B/PR-VG-B_train.sh
+bash Shell/Result/DIOR-RSVG/QR-VG-B/QR-VG-B_train.sh
 ```
 
-#### PR-VG-L
+#### QR-VG-L
 ```bash
-bash Shell/Result/DIOR-RSVG/PR-VG-L/PR-VG-L_train.sh
+bash Shell/Result/DIOR-RSVG/QR-VG-L/QR-VG-L_train.sh
 ```
 
 ### OPT-RSVG Training
 
-#### PR-VG
+#### QR-VG
 ```bash
-bash Shell/Result/OPT-RSVG/PR-VG/PR-VG_train.sh
+bash Shell/Result/OPT-RSVG/QR-VG/QR-VG_train.sh
 ```
 
-#### PR-VG-E
+#### QR-VG-E
 ```bash
-bash Shell/Result/OPT-RSVG/PR-VG-E/PR-VG-E_train.sh
+bash Shell/Result/OPT-RSVG/QR-VG-E/QR-VG-E_train.sh
 ```
 
-#### PR-VG-C
+#### QR-VG-C
 ```bash
-bash Shell/Result/OPT-RSVG/PR-VG-C/PR-VG-C_train.sh
+bash Shell/Result/OPT-RSVG/QR-VG-C/QR-VG-C_train.sh
 ```
 
 ### Training Configuration
 
 Key hyperparameters:
 - **Pruning Ratios**: Different variants use different progressive pruning ratios
-  - PR-VG (DIOR): `0.45 0.35 0.30 0.18`
-  - PR-VG-B (DIOR): `0.35 0.25 0.20 0.10`
-  - PR-VG-L (DIOR): `0.30 0.20 0.10 0.00`
-  - PR-VG (OPT): `0.60 0.50 0.45 0.38`
-  - PR-VG-E (OPT): `0.55 0.45 0.40 0.30`
-  - PR-VG-C (OPT): `0.45 0.40 0.35 0.18`
+  - QR-VG (DIOR): `0.45 0.35 0.30 0.18`
+  - QR-VG-B (DIOR): `0.35 0.25 0.20 0.10`
+  - QR-VG-L (DIOR): `0.30 0.20 0.10 0.00`
+  - QR-VG (OPT): `0.60 0.50 0.45 0.38`
+  - QR-VG-E (OPT): `0.55 0.45 0.40 0.30`
+  - QR-VG-C (OPT): `0.45 0.40 0.35 0.18`
 - **Learning Rates**: 
   - Transformer: `1e-4`
   - Backbone: `5e-5`
@@ -173,7 +173,7 @@ Key hyperparameters:
 ### DIOR-RSVG Inference
 
 ```bash
-bash Shell/Result/DIOR-RSVG/PR-VG/PR-VG_test.sh
+bash Shell/Result/DIOR-RSVG/QR-VG/QR-VG_test.sh
 ```
 
 Or use Python directly:
@@ -196,7 +196,7 @@ python inference_rsvg1.py \
 ### OPT-RSVG Inference
 
 ```bash
-bash Shell/Result/OPT-RSVG/PR-VG/PR-VG_test.sh
+bash Shell/Result/OPT-RSVG/QR-VG/QR-VG_test.sh
 ```
 
 ## 📊 Results
@@ -206,9 +206,9 @@ bash Shell/Result/OPT-RSVG/PR-VG/PR-VG_test.sh
 | Method | Pr@0.5 | Pr@0.6 | Pr@0.7 | Pr@0.8 | Pr@0.9 | meanIoU | cumIoU |
 |--------|--------|--------|--------|--------|--------|---------|--------|
 | LQVG | 82.48 | 79.47 | 74.47 | 64.21 | 42.19 | 73.02 | 81.70 |
-| PR-VG | 82.67 | 80.32 | 75.29 | 63.84 | 41.93 | 73.24 | 81.92 |
-| **PR-VG-B** | **83.49** | 80.12 | **76.09** | **65.0** | **43.6** | **74.03** | 82.55 |
-| PR-VG-L | 83.91 | **80.65** | 75.57 | 64.43 | 42.47 | 73.81 | 82.59 |
+| QR-VG | 82.67 | 80.32 | 75.29 | 63.84 | 41.93 | 73.24 | 81.92 |
+| **QR-VG-B** | **83.49** | 80.12 | **76.09** | **65.0** | **43.6** | **74.03** | 82.55 |
+| QR-VG-L | 83.91 | **80.65** | 75.57 | 64.43 | 42.47 | 73.81 | 82.59 |
 
 
 ### OPT-RSVG Results
@@ -216,20 +216,20 @@ bash Shell/Result/OPT-RSVG/PR-VG/PR-VG_test.sh
 | Method | Pr@0.5 | Pr@0.6 | Pr@0.7 | Pr@0.8 | Pr@0.9 | meanIoU | cumIoU |
 |--------|--------|--------|--------|--------|--------|---------|--------|
 | LPVA | 76.43 | 71.17 | 61.71 | 44.59 | 15.52 | 64.56 | 75.47 |
-| **PR-VG** | **80.40** | **76.97** | **69.19** | **50.98** | 18.25 | **67.64** | 75.62 |
-| PR-VG-E | 80.27 | 76.87 | 68.82 | 50.88 | 18.63 | 67.48 | **75.67** |
+| **QR-VG** | **80.40** | **76.97** | **69.19** | **50.98** | 18.25 | **67.64** | 75.62 |
+| QR-VG-E | 80.27 | 76.87 | 68.82 | 50.88 | 18.63 | 67.48 | **75.67** |
 
 ### Efficiency Analysis
 
 **DIOR-RSVG:**
-- PR-VG reduces FLOPs by ~40% and training time by 20.1%
-- PR-VG-B reduces FLOPs by ~30% and training time by 14.3% (best accuracy)
-- PR-VG-L reduces FLOPs by ~26% and training time by 12.7%
+- QR-VG reduces FLOPs by ~40% and training time by 20.1%
+- QR-VG-B reduces FLOPs by ~30% and training time by 14.3% (best accuracy)
+- QR-VG-L reduces FLOPs by ~26% and training time by 12.7%
 
 **OPT-RSVG:**
-- PR-VG reduces FLOPs by ~44% and training time by 24.3%
-- PR-VG-E reduces FLOPs by ~48% and training time by 12.1%
-- PR-VG-C reduces FLOPs by ~42% and training time by 11.9%
+- QR-VG reduces FLOPs by ~44% and training time by 24.3%
+- QR-VG-E reduces FLOPs by ~48% and training time by 12.1%
+- QR-VG-C reduces FLOPs by ~42% and training time by 11.9%
 
 ## 🔬 Ablation Studies
 
@@ -255,7 +255,7 @@ bash Shell/Result/OPT-RSVG/PR-VG/PR-VG_test.sh
 
 ## 🏗️ Model Architecture
 
-PR-VG consists of three main components:
+QR-VG consists of three main components:
 
 1. **Text-Guided Structured Feature Pruning (SFP)**
    - Cross-Modal Importance Scoring (CMIS)
